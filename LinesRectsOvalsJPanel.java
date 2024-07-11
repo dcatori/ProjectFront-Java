@@ -30,7 +30,7 @@ public class LinesRectsOvalsJPanel extends JPanel
       g.fillRect(100, 40, 90, 55);
       g.setColor(Color.ORANGE);
       g.setFont(new Font("Algerian",Font.BOLD, 22));
-      g.drawString("Senac", 115, 75);
+      g.drawString("Senac", 110, 75);
       
       
       g.setColor(Color.BLACK);
@@ -41,7 +41,6 @@ public class LinesRectsOvalsJPanel extends JPanel
       g.drawRoundRect(290, 40, 90, 55, 20, 20);
       g.setFont(new Font("Algerian",Font.BOLD, 22));
       g.setColor(Color.GRAY);
-      
       g.drawString("Senac", 300, 75);
       
       
@@ -60,7 +59,7 @@ public class LinesRectsOvalsJPanel extends JPanel
       g.drawOval(195, 100, 90, 55);
       g.setColor(Color.GRAY);
       g.setFont(new Font("Algerian",Font.BOLD, 50));
-      g.drawString("S", 220, 150);
+      g.drawString("S", 220, 145);
       g.setColor(Color.MAGENTA);
       g.fillOval(290, 100, 90, 55);
       g.setColor(Color.WHITE);
