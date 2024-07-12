@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class ComboBoxFrame extends JFrame 
 {
-   private final JComboBox<String> namesJComboBox; // hold icon names
-   private final JLabel label; // displays selected icon
+   private final JComboBox<String> namesJComboBox; // hold list names
+   private final JLabel label; // displays selected name
 
    private static final String[] names = 
       {"Gustavo", "Gabriel", "Lucas", "Matheus", "Daniel", "Julio", "Angelo", "Enrique", "Germano", "Farias", "Douglas", "Rafael", "Felipe"};
@@ -23,7 +23,7 @@ public class ComboBoxFrame extends JFrame
       //imagesJComboBox.setMaximumRowCount(3); // display three rows
 
       add(namesJComboBox); // add combobox to JFrame
-      label = new JLabel(names[0]); // display first icon
+      label = new JLabel(names[0]); // display first name
       add(label); // add label to JFrame
       namesJComboBox.addItemListener(event -> { 
            if (event.getStateChange() == ItemEvent.SELECTED)
