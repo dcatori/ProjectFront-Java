@@ -17,13 +17,10 @@ public class FibonacciNumbers extends JFrame
       new JPanel(new GridLayout(2, 2, 5, 5));
    private long n1 = 0; // initialize with first Fibonacci number
    private long n2 = 1; // initialize with second Fibonacci number
-   
    private int count = 1; // current Fibonacci number to display
    private final JLabel nJLabel = new JLabel("Fibonacci of 1: ");
-   private final JLabel nFibonacciJLabel = 
-      new JLabel(String.valueOf(n2));
+   private final JLabel nFibonacciJLabel = new JLabel(String.valueOf(n2));
    private final JButton nextNumberJButton = new JButton("Next Number");
-   
    private final JButton previousNumberJButton = new JButton("Previous");
 
    // constructor
@@ -34,7 +31,7 @@ public class FibonacciNumbers extends JFrame
       
       // add GUI components to the SwingWorker panel
       workerJPanel.setBorder(new TitledBorder(
-         new LineBorder(Color.BLACK), "With SwingWorker"));
+         new LineBorder(Color.ORANGE), "With SwingWorker"));
       workerJPanel.add(new JLabel("Get Fibonacci of:"));
       workerJPanel.add(numberJTextField);
       goJButton.addActionListener(
@@ -72,7 +69,7 @@ public class FibonacciNumbers extends JFrame
       
       // add GUI components to the event-dispatching thread panel
       eventThreadJPanel.setBorder(new TitledBorder(
-         new LineBorder(Color.BLACK), "Without SwingWorker"));
+         new LineBorder(Color.BLUE), "Without SwingWorker"));
       eventThreadJPanel.add(nJLabel);
       eventThreadJPanel.add(nFibonacciJLabel); 
       
