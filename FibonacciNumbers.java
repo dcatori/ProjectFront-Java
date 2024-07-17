@@ -80,7 +80,7 @@ public class FibonacciNumbers extends JFrame
          public void actionPerformed(ActionEvent event)
             {
                // calculate the Fibonacci number after n2
-               if (count >= 1) {
+               if (count > 1) {
                
                long temp = n2 - n1;
                n2 = n1;
