@@ -9,9 +9,9 @@ public class EditarCadastro extends JFrame {
     private final JTextField emailTextField = new JTextField();
     private final JTextField senhaTextField = new JTextField();
     private final JLabel idJLabel = new JLabel("ID:");
-    private final JLabel nomeJLabel = new JLabel("Digite um nome:");
-    private final JLabel emailJLabel = new JLabel("Digite um email:");
-    private final JLabel senhaJLabel = new JLabel("Digite uma senha:");
+    private final JLabel nomeJLabel = new JLabel("Digite o nome:");
+    private final JLabel emailJLabel = new JLabel("Digite o email:");
+    private final JLabel senhaJLabel = new JLabel("Digite a senha:");
     private final JLabel notificacaoJLabel = new JLabel("Notificações:");
     private final JButton atualizarJButton = new JButton("✓");
     private final JButton primeiroRegistroJButton = new JButton("<<");
@@ -45,6 +45,7 @@ public class EditarCadastro extends JFrame {
         add(new JLabel());
        
         idTextField.setEditable(false);
+        idTextField.setToolTipText("Não pode ser mudado!");
         atualizarJButton.setEnabled(false);
         atualizarJButton.setToolTipText("Atualizar cadastro");
         
@@ -69,7 +70,12 @@ public class EditarCadastro extends JFrame {
         add(registroAnteriorJButton);
         add(proximoRegistroJButton);
         add(ultimoRegistroJButton);
+        
+        add(new JLabel());
         add(notificacaoJLabel);
+        add(new JLabel());
+        add(new JLabel());
+
 
         setSize(500, 200);
         setVisible(true);
