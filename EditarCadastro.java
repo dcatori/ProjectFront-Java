@@ -48,6 +48,10 @@ public class EditarCadastro extends JFrame {
         idTextField.setToolTipText("Não pode ser mudado!");
         atualizarJButton.setEnabled(false);
         atualizarJButton.setToolTipText("Atualizar cadastro");
+        primeiroRegistroJButton.setToolTipText("Primeiro registro");
+        registroAnteriorJButton.setToolTipText("Registro antetior");
+        proximoRegistroJButton.setToolTipText("Proximo registro");
+        ultimoRegistroJButton.setToolTipText("Ultimo registro");
         
         atualizarJButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event){
