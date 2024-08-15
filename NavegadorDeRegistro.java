@@ -1,6 +1,5 @@
 
 import java.sql.*;
-import java.util.Arrays;
 
 public class NavegadorDeRegistro {
 
@@ -110,17 +109,29 @@ public class NavegadorDeRegistro {
         return resultado;
     }
 
-    public static boolean deletarRegistro(String db, String tbl, String id) throws Exception {
+    public static String[] deletarRegistro(String db, String tbl, String id) throws Exception {
         try {
             Connection conexao = MySQLConnector.conectar();
             String strSqlexcluirRegistro = "delete from `db_teste`.`tbl_teste` where `id` = " + id + ";";
             Statement stmSqlexcluirRegistro = conexao.createStatement();
             stmSqlexcluirRegistro.addBatch(strSqlexcluirRegistro);
             stmSqlexcluirRegistro.executeBatch();
-            System.out.println(strSqlexcluirRegistro);
-            return true;
+            stmSqlexcluirRegistro.close();
+            
+            String strSqlProximoRegistro = "select * from `" + db + "`.`" + tbl + "`  where `id` >= " + id + ";";
+            Statement stmSqlProximoRegistro = conexao.createStatement();
+            ResultSet rstSqlProximoRegistro = stmSqlProximoRegistro.executeQuery(strSqlProximoRegistro);
+            rstSqlProximoRegistro.next();
+            String[] resultado = {
+                rstSqlProximoRegistro.getString("id"),
+                rstSqlProximoRegistro.getString("nome"),
+                rstSqlProximoRegistro.getString("email")
+            };
+            stmSqlProximoRegistro.close();
+            return resultado;
         } catch (Exception e){
-            return false;
+            System.out.println(e);
+            return null;
         }
     }
 
@@ -140,38 +151,18 @@ public class NavegadorDeRegistro {
     }
 
 
-public static String[] cadastrarNovoRegistro(String db, String tbl, String nome, String email, char[] senha) throws Exception {
-    Connection conexao = null;
-    PreparedStatement pstmt = null;
-    try {
-        conexao = MySQLConnector.conectar(); // Assume que o método conectar retorna uma conexão válida
-        String strSqlInserirRegistro = "INSERT INTO `" + db + "`.`" + tbl + "` (`nome`, `email`, `senha`) VALUES (?, ?, ?)";
-        
-        pstmt = conexao.prepareStatement(strSqlInserirRegistro);
-        pstmt.setString(1, nome);
-        pstmt.setString(2, email);
-        pstmt.setString(3, String.valueOf(senha));
-        
-        int linhasAfetadas = pstmt.executeUpdate();
-        return inserirNovoRegistro(db, tbl, nome, email, senha);
+    public static boolean cadastrarRegistro(String db, String tbl, String nome, String email, char[] senha) throws Exception {
+       try {
+        Connection conexao = MySQLConnector.conectar();
+        String strSqlCadastrarRegistro = "insert into `" + db + "`.`" + tbl + "` (`nome`,`email`,`senha`) values ('" + nome + "','" + email + "','" + String.valueOf(senha) +"');";
+        Statement stmSqlCadastrarRegistro = conexao.createStatement();
+        stmSqlCadastrarRegistro.addBatch(strSqlCadastrarRegistro);
+        stmSqlCadastrarRegistro.executeBatch();
+        return true;
     } catch (SQLException e) {
         System.out.println("Erro ao inserir novo registro: " + e.getMessage());
-        return inserirNovoRegistro(db, tbl, nome, email, senha);
-    } finally {
-        if (pstmt != null) {
-            try {
-                pstmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (conexao != null) {
-            try {
-                conexao.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        return false;
     }
 }
+
 }
